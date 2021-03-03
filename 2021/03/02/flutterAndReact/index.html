@@ -20,19 +20,21 @@
     var CONFIG = {"hostname":"localhost","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="一位有态度的程序员">
-<meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="http://localhost:4000/tags/index.html">
+  <meta name="description" content="React与Flutter的异步实现原理   1.Dart和js都是单线程的，那就意味着在执行时有先后顺序，都采用事件循环Event loop来实现异步任务。     2.为了实现不同优先级的任务，两者都拆分成两种队列。 fluter：事件队列(Event Queue)和微任务队列(Microtask Queue)        (1)含义             1234567891011121">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React与Flutter">
+<meta property="og:url" content="http://localhost:4000/2021/03/02/flutterAndReact/index.html">
 <meta property="og:site_name" content="小麦的窝">
-<meta property="og:description" content="一位有态度的程序员">
+<meta property="og:description" content="React与Flutter的异步实现原理   1.Dart和js都是单线程的，那就意味着在执行时有先后顺序，都采用事件循环Event loop来实现异步任务。     2.为了实现不同优先级的任务，两者都拆分成两种队列。 fluter：事件队列(Event Queue)和微任务队列(Microtask Queue)        (1)含义             1234567891011121">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-03-01T02:17:27.000Z">
-<meta property="article:modified_time" content="2021-03-02T03:08:53.273Z">
+<meta property="og:image" content="http://localhost:4000/2021/03/02/flutterAndReact/flutterEventloop.jpg">
+<meta property="article:published_time" content="2021-03-02T03:39:18.000Z">
+<meta property="article:modified_time" content="2021-03-03T09:06:43.127Z">
 <meta property="article:author" content="Magellan">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://localhost:4000/2021/03/02/flutterAndReact/flutterEventloop.jpg">
 
-<link rel="canonical" href="http://localhost:4000/tags/">
+<link rel="canonical" href="http://localhost:4000/2021/03/02/flutterAndReact/">
 
 
 <script id="page-configurations">
@@ -40,13 +42,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>tags | 小麦的窝
-</title>
+  <title>React与Flutter | 小麦的窝</title>
   
 
 
@@ -148,51 +149,121 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
-          <div class="content page posts-expand">
+          <div class="content post posts-expand">
             
 
     
-    
-    
-    <div class="post-block" lang="zh-CN">
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2021/03/02/flutterAndReact/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+      <meta itemprop="name" content="Magellan">
+      <meta itemprop="description" content="一位有态度的程序员">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小麦的窝">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          React与Flutter
+        </h1>
 
-<h1 class="post-title" itemprop="name headline">tags
-</h1>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-<div class="post-meta">
+              <time title="创建时间：2021-03-02 11:39:18" itemprop="dateCreated datePublished" datetime="2021-03-02T11:39:18+08:00">2021-03-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flutter/" itemprop="url" rel="index"><span itemprop="name">Flutter</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="React与Flutter的异步实现原理"><a href="#React与Flutter的异步实现原理" class="headerlink" title="React与Flutter的异步实现原理"></a>React与Flutter的异步实现原理</h2><!-- ## 一.单线程模型 -->
+<!-- #####  相同 -->
+<ul>
+<li><p>1.Dart和js都是单线程的，那就意味着在执行时有先后顺序，都采用事件循环Event loop来实现异步任务。  </p>
+<br>
+</li>
+<li><p>2.为了实现不同优先级的任务，两者都拆分成两种队列。</p>
+<pre><code>fluter：事件队列(Event Queue)和微任务队列(Microtask Queue)
+       (1)含义
+          
+</code></pre>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 微任务：两种实现方式</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 1          </span></span><br><span class="line">scheduleMicrotask(()&#123;</span><br><span class="line">  <span class="comment">// ...code</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="keyword">new</span> Future.microtask(()&#123;</span><br><span class="line">    <span class="comment">// ...code</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 事件任务：</span></span><br><span class="line"><span class="keyword">new</span> Future(() &#123;</span><br><span class="line">  <span class="comment">// ...code</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>(2)处理逻辑<br><img src="/2021/03/02/flutterAndReact/flutterEventloop.jpg"></p>
+<pre><code>React：宏任务和微任务
+      （1）含义 
+          宏任务：宿主发起的任务成为宏任务，宿主包括浏览器和node。（宿主级任务）
+          微任务：把Javascript 引擎发起的任务成为微任务。（js引擎级任务）
+       (2) 处理逻辑
+          任务队列并不是只有一个，不同的任务对应着不同的任务队列。宏任务放入宏任务队列，
+          微任务放入微任务队列，这些任务队列在栈空的时候被调入的优先级是微任务队列优
+          于宏任务队列，当微任务队列都清空的时候才执行宏任务队列中的任务。这就解释了
+          为什么Promise里的代码会setTimeout先执行，因为Promise是JS引擎发出的任务方在微
+          观任务中，而setTimeout在node环境中由node提供在浏览器环境中由浏览器提供。
+</code></pre>
+<br>
+
+
+</li>
+</ul>
+<ul>
+<li>3.两者的延迟任务都不一定准确（Future.delayed和setTimeout）<pre><code>Future.delayed是放在事件队列setTimeout是由放在宏任务，如果队列前面有高耗时任务，那么延迟task不一定能准确运行。
+</code></pre>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/03/02/iOS/" rel="prev" title="iOS">
+      <i class="fa fa-chevron-left"></i> iOS
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-              暂无标签
-            </div>
-            <div class="tag-cloud-tags">
-              
-            </div>
-          </div>
-        
-      </div>
-      
-      
-      
-    </div>
-    
-
-    
-    
-    
 
 
           </div>
@@ -243,6 +314,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#React%E4%B8%8EFlutter%E7%9A%84%E5%BC%82%E6%AD%A5%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">React与Flutter的异步实现原理</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

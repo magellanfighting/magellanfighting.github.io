@@ -152,6 +152,106 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/2021/03/02/flutterAndReact/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+      <meta itemprop="name" content="Magellan">
+      <meta itemprop="description" content="一位有态度的程序员">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小麦的窝">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/02/flutterAndReact/" class="post-title-link" itemprop="url">React与Flutter</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-02 11:39:18" itemprop="dateCreated datePublished" datetime="2021-03-02T11:39:18+08:00">2021-03-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flutter/" itemprop="url" rel="index"><span itemprop="name">Flutter</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="React与Flutter的异步实现原理"><a href="#React与Flutter的异步实现原理" class="headerlink" title="React与Flutter的异步实现原理"></a>React与Flutter的异步实现原理</h2><!-- ## 一.单线程模型 -->
+<!-- #####  相同 -->
+<ul>
+<li><p>1.Dart和js都是单线程的，那就意味着在执行时有先后顺序，都采用事件循环Event loop来实现异步任务。  </p>
+<br>
+</li>
+<li><p>2.为了实现不同优先级的任务，两者都拆分成两种队列。</p>
+<pre><code>fluter：事件队列(Event Queue)和微任务队列(Microtask Queue)
+       (1)含义
+          
+</code></pre>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 微任务：两种实现方式</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 1          </span></span><br><span class="line">scheduleMicrotask(()&#123;</span><br><span class="line">  <span class="comment">// ...code</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="keyword">new</span> Future.microtask(()&#123;</span><br><span class="line">    <span class="comment">// ...code</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 事件任务：</span></span><br><span class="line"><span class="keyword">new</span> Future(() &#123;</span><br><span class="line">  <span class="comment">// ...code</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>(2)处理逻辑<br><img src="/2021/03/02/flutterAndReact/flutterEventloop.jpg"></p>
+<pre><code>React：宏任务和微任务
+      （1）含义 
+          宏任务：宿主发起的任务成为宏任务，宿主包括浏览器和node。（宿主级任务）
+          微任务：把Javascript 引擎发起的任务成为微任务。（js引擎级任务）
+       (2) 处理逻辑
+          任务队列并不是只有一个，不同的任务对应着不同的任务队列。宏任务放入宏任务队列，
+          微任务放入微任务队列，这些任务队列在栈空的时候被调入的优先级是微任务队列优
+          于宏任务队列，当微任务队列都清空的时候才执行宏任务队列中的任务。这就解释了
+          为什么Promise里的代码会setTimeout先执行，因为Promise是JS引擎发出的任务方在微
+          观任务中，而setTimeout在node环境中由node提供在浏览器环境中由浏览器提供。
+</code></pre>
+<br>
+
+
+</li>
+</ul>
+<ul>
+<li>3.两者的延迟任务都不一定准确（Future.delayed和setTimeout）<pre><code>Future.delayed是放在事件队列setTimeout是由放在宏任务，如果队列前面有高耗时任务，那么延迟task不一定能准确运行。
+</code></pre>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://localhost:4000/2021/03/02/iOS/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -199,8 +299,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>iOS<br>iOS 开发</p>
-
+          
       
     </div>
 
@@ -416,7 +515,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
